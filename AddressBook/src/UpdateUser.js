@@ -3,7 +3,6 @@ import {Button, TextInput, ScrollView,Text,View} from 'react-native';
 import {Style} from '../styles/Style';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import {Update} from '../src/Actions';
 
 const reviewSchema = yup.object({
   first_name : yup.string()
