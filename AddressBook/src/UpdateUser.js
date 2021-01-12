@@ -50,7 +50,7 @@ export default function UpdateUser({route,upadte}){
     <ScrollView style={Style.container}>
       <Formik
         initialValues={{ first_name: '', last_name:'', email:'',Ph_number:'',note:'',DOB:''}}
-        validationSchema={reviewSchema}
+        //validationSchema={reviewSchema}
         onSubmit={(values, actions) => {
           upadte(values);
           actions.resetForm();

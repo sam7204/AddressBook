@@ -19,7 +19,7 @@ export default  function  Search({navigation}){
      setText(text);
    };
   useEffect(() => {
-    setLoading(true);
+    const unsubscribe = navigation.addListener('focus', () => {
     fetch('https://addressapi1.herokuapp.com/addressbook')
     .then((response) => response.json())
     .then(json => {
@@ -28,7 +28,11 @@ export default  function  Search({navigation}){
     })
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, [])
+    });
+    return () => {
+      unsubscribe;
+    };
+  }, [navigation])
   return(
     <View style={Style.container}>
     <SearchBar

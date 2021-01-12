@@ -46,7 +46,7 @@ export default function AddUser({add}){
     <ScrollView style={Style.container}>
       <Formik
         initialValues={{ first_name: '', last_name:'', email:'',Ph_number:'',note:'',DOB:''}}
-        validationSchema={reviewSchema}
+        //validationSchema={reviewSchema}
         onSubmit={(values,actions) => {
           add(values);
           actions.resetForm();
