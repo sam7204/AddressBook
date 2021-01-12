@@ -25,8 +25,8 @@ export default function UpdateUser({route,upadte}){
   function upadte(values){
     let a =parseInt(values.Ph_number);
     try{
-    fetch(`https://addressapi1.herokuapp.com/addressbook`, {
-    method: 'POST',
+    fetch(`https://addressapi1.herokuapp.com/addressbook/${item.id}`, {
+    method: 'PUT',
     mode :'no-cors',
     headers: {
       Accept: 'application/json',

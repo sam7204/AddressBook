@@ -20,7 +20,7 @@ export default  function  Home({ navigation }){
 
   function Delete(item){
     Alert.alert(
-       `${item.title}`,
+       `${item.fname} ${item.lanme}`,
       "????",
       [
         {
