@@ -19,37 +19,41 @@ const reviewSchema = yup.object({
   .required('Required'),
 });
 
-export default function UpdateUser({ route}){
+export default function UpdateUser({route,upadte}){
   const item =route.params;
   console.log(item.id);
+  function upadte(values){
+    let a =parseInt(values.Ph_number);
+    try{
+    fetch(`https://addressapi1.herokuapp.com/addressbook`, {
+    method: 'POST',
+    mode :'no-cors',
+    headers: {
+      Accept: 'application/json',
+     'Content-Type' : 'application/json',
+      },
+       body :JSON.stringify({
+          fname: `${values.first_name}`,
+          lanme:`${values.last_name}`,
+          phnum:`${a}`,
+          email:`${values.email}`,
+          DOB:`${values.DOB}`,
+          note:`${values.note}`
+         }),
+       }
+       );}
+       catch(e){
+       console.log("error");
+       }
+  }
   return (  
     <ScrollView style={Style.container}>
       <Formik
         initialValues={{ first_name: '', last_name:'', email:'',Ph_number:'',note:'',DOB:''}}
-        //validationSchema={reviewSchema}
+        validationSchema={reviewSchema}
         onSubmit={(values, actions) => {
+          upadte(values);
           actions.resetForm();
-          let a =parseInt(values.Ph_number);
-         console.log(item);
-         fetch(`https://addressapi1.herokuapp.com/addressbook/${item.id}`, {
-         method: 'POST',
-         mode :'no-cors',
-    // cache:'no-cache',
-    // credentials:'same-origin',
-         headers: {
-           Accept: 'application/json',
-          'Content-Type' : 'application/json',
-           },
-            body :JSON.stringify({
-               fname: `${values.first_name}`,
-               lamme:`${values.last_name}`,
-               phnum:`${a}`,
-               email:`${values.email_name}`,
-               DOB:`${values.DOB_name}`,
-               note:`${values.note}`
-              }),
-            }
-            );
         }}
       >
         {props => (
