@@ -29,8 +29,27 @@ export default function UpdateUser({ item }){
         validationSchema={reviewSchema}
         onSubmit={(values, actions) => {
           actions.resetForm();
-          console.log(values);
-          Update(values,item.id);
+          let a =toString(values);
+         console.log(typeof(a));
+         fetch(`https://addressapi1.herokuapp.com/addressbook/${item.id}`, {
+         method: 'POST',
+         mode :'no-cors',
+    // cache:'no-cache',
+    // credentials:'same-origin',
+         headers: {
+           Accept: 'application/json',
+          'Content-Type' : 'application/json',
+           },
+            body :JSON.stringify({
+               fname: `${values.first_name}`,
+               lamme:`${values.last_name}`,
+               phnum:`${values.Phnum_name}`,
+               email:`${values.email_name}`,
+               DOB:`${values.DOB_name}`,
+               note:`${values.note}`
+              }),
+            }
+            );
         }}
       >
         {props => (

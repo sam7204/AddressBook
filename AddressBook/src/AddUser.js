@@ -3,7 +3,7 @@ import {Button, TextInput, ScrollView,Text,View} from 'react-native';
 import {Style} from '../styles/Style';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import {Put} from '../src/Actions';
+
 
 const reviewSchema = yup.object({
   first_name : yup.string()
@@ -20,16 +20,38 @@ const reviewSchema = yup.object({
   .required('Required'),
 });
 
+
 export default function AddUser(){
   return (
     
     <ScrollView style={Style.container}>
       <Formik
         initialValues={{ first_name: '', last_name:'', email:'',Ph_number:'',note:'',DOB:''}}
-        //validationSchema={reviewSchema}
+        validationSchema={reviewSchema}
         onSubmit={(values,actions) => {
           actions.resetForm();
-          Put(values);
+          console.log(values.first_name);
+         let a =toString(values);
+         console.log(typeof(a));
+         fetch("https://addressapi1.herokuapp.com/addressbook", {
+         method: 'POST',
+         mode :'no-cors',
+    // cache:'no-cache',
+    // credentials:'same-origin',
+         headers: {
+           Accept: 'application/json',
+          'Content-Type' : 'application/json',
+           },
+            body :JSON.stringify({
+               fname: `${values.first_name}`,
+               lamme:`${values.last_name}`,
+               phnum:`${values.Phnum_name}`,
+               email:`${values.email_name}`,
+               DOB:`${values.DOB_name}`,
+               note:`${values.note}`
+              }),
+            }
+            );
         }}
       >
         {props => (

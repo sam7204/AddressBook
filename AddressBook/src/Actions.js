@@ -1,18 +1,18 @@
 
      function  Put(values){
-      let a =JSON.stringify(values);
-      console.log(a);
-    fetch(`https://addressapi1.herokuapp.com/addressbook/`, {
-    method: 'post',
+      let a =toString(values.first_name);
+      console.log(typeof(a));
+    fetch("https://addressapi1.herokuapp.com/addressbook", {
+    method: 'POST',
     mode :'no-cors',
-    cache:'no-cache',
-    credentials:'same-origin',
+    // cache:'no-cache',
+    // credentials:'same-origin',
     headers: {
       Accept: 'application/json',
     'Content-Type' : 'application/json',
   },
   body :JSON.stringify({
-    fname:"asasa",
+    fname: "hhh",
   }),
 }
     );}

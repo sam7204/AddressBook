@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_01_06_212822) do
     t.string "fname"
     t.string "lanme"
     t.string "email"
-    t.integer "phnum"
+    t.string "phnum"
     t.string "note"
     t.date "DOB"
     t.string "cust"

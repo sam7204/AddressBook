@@ -4,19 +4,19 @@ import {Style} from '../styles/Style';
 import { SearchBar } from 'react-native-elements';
 export default  function  Search({navigation}){
   const [isLoading, setLoading] = useState(false);
-  let [data, setData] = useState([]);
-  const[text,setText]=useState();
+  const [data, setData] = useState([]);
+  const [text,setText]=useState();
   let arrayholder = data;
   function searchFilterFunction (text) { 
     const newData = arrayholder.filter(item => {      
-      const itemData = `${item.title.toUpperCase()}`
+      const itemData = `${item.fname.toUpperCase()}`
       
        const textData = text.toUpperCase();
         
        return itemData.indexOf(textData) > -1;    
     });
     setText(text);
-    setData(newData);  
+    setData(newData);
   };
   
   useEffect(() => {

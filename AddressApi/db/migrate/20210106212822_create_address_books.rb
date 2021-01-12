@@ -4,7 +4,7 @@ class CreateAddressBooks < ActiveRecord::Migration[6.1]
       t.string :fname
       t.string :lanme
       t.string :email
-      t.integer :phnum
+      t.string :phnum
       t.string :note
       t.date :DOB
       t.string :cust
