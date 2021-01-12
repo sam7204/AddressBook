@@ -19,17 +19,18 @@ const reviewSchema = yup.object({
   .required('Required'),
 });
 
-export default function UpdateUser({ item }){
-  return (
-    
+export default function UpdateUser({ route}){
+  const item =route.params;
+  console.log(item.id);
+  return (  
     <ScrollView style={Style.container}>
       <Formik
         initialValues={{ first_name: '', last_name:'', email:'',Ph_number:'',note:'',DOB:''}}
-        validationSchema={reviewSchema}
+        //validationSchema={reviewSchema}
         onSubmit={(values, actions) => {
           actions.resetForm();
-          let a =toString(values);
-         console.log(typeof(a));
+          let a =parseInt(values.Ph_number);
+         console.log(item);
          fetch(`https://addressapi1.herokuapp.com/addressbook/${item.id}`, {
          method: 'POST',
          mode :'no-cors',
@@ -42,7 +43,7 @@ export default function UpdateUser({ item }){
             body :JSON.stringify({
                fname: `${values.first_name}`,
                lamme:`${values.last_name}`,
-               phnum:`${values.Phnum_name}`,
+               phnum:`${a}`,
                email:`${values.email_name}`,
                DOB:`${values.DOB_name}`,
                note:`${values.note}`

@@ -1,16 +1,23 @@
 import React ,{useEffect, useState }from "react";
 import {View,Text,FlatList,TouchableOpacity,ActivityIndicator,Alert} from 'react-native';
 import {Style} from '../styles/Style';
+
 export default  function  Home({ navigation }){
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
     fetch('https://addressapi1.herokuapp.com/addressbook')
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, [])
+    });
+    return () => {
+      unsubscribe;
+    };
+  },[navigation])
+
   function Delete(item){
     Alert.alert(
        `${item.title}`,
@@ -46,7 +53,7 @@ export default  function  Home({ navigation }){
 
   }
      return(
-        <View style={Style.container}>
+       <View style={Style.container}>
          {isLoading ? <ActivityIndicator/> : (
           <FlatList
             numColumns={2}

@@ -8,7 +8,7 @@ export default function ViewUser({navigation, route}){
 <Text style={Style.input}>{item.fname}</Text>
 <Text style={Style.input}>{item.lanme}</Text>
 <Text style={Style.input}>{item.email}</Text>
-<Text style={Style.input}>{item.Phnum}</Text>
+<Text style={Style.input}>{item.phnum}</Text>
 <Text style={Style.input}>{item.DOB}</Text>
 <Text style={Style.input}>{item.note}</Text>
 </View>
