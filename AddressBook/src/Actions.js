@@ -1,35 +1,35 @@
 
      function  Put(values){
-    fetch('https://127.0.0.1:500/addressbook', {
-    method: 'POST',
+      let a =JSON.stringify(values);
+      console.log(a);
+    fetch(`https://addressapi1.herokuapp.com/addressbook/`, {
+    method: 'post',
+    mode :'no-cors',
+    cache:'no-cache',
+    credentials:'same-origin',
     headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json'
+      Accept: 'application/json',
+    'Content-Type' : 'application/json',
   },
-  body: JSON.stringify({
-    fname:'values.fname',
-    lanme:'values.lanme',
-    email:'values.email',
-    phnum:'values.Phnum',
-    DOB:'values.DOB',
-    note:'values.note',
-    cust:''
-  })
-});}
-function  Update(values){
-    fetch(`https://127.0.0.1:500/addressbook/${values.id}`, {
+  body :JSON.stringify({
+    fname:"asasa",
+  }),
+}
+    );}
+function  Update(values, id){
+    fetch(`https://addressapi1.herokuapp.com/addressbook/${id}`, {
     method: 'PATCH',
     headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'multipart/form-data',
   },
   body: JSON.stringify({
-    fname:'values.fname',
-    lanme:'values.lanme',
-    email:'values.email',
-    phnum:'values.Phnum',
-    DOB:'values.DOB',
-    note:'values.note',
+    fname: `${values.first_name}`,
+    lanme: `${values.last_name}`,
+    email: `${values.email}`,
+    phnum: `${values.Ph_numer}`,
+    DOB:   `${values.DOB}`,
+    note: `${values.note}`,
     cust:''
   })
 });}

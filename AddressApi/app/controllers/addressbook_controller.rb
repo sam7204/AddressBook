@@ -6,13 +6,14 @@ class AddressbookController < ApplicationController
   def create
     addressbook = AddressBook.create(addressbook_params)
     if addressbook.save
-         render json: addressbook, status: :created
+         render json: addressbook, status: :ok
     else
         render json: {data:addressbook.errors}, status: :errors    
     end    
   end
   def destroy
     addressbook = AddressBook.destroy(params[:id])
+    addressbook =AddressBook.all
     render json: addressbook, status: :ok
   end
   def update

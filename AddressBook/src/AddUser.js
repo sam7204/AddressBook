@@ -20,14 +20,14 @@ const reviewSchema = yup.object({
   .required('Required'),
 });
 
-export default function AddUser({ addReview }){
+export default function AddUser(){
   return (
     
     <ScrollView style={Style.container}>
       <Formik
         initialValues={{ first_name: '', last_name:'', email:'',Ph_number:'',note:'',DOB:''}}
-        validationSchema={reviewSchema}
-        onSubmit={(values, actions) => {
+        //validationSchema={reviewSchema}
+        onSubmit={(values,actions) => {
           actions.resetForm();
           Put(values);
         }}

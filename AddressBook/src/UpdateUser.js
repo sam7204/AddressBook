@@ -20,7 +20,7 @@ const reviewSchema = yup.object({
   .required('Required'),
 });
 
-export default function UpdateUser({ addReview }){
+export default function UpdateUser({ item }){
   return (
     
     <ScrollView style={Style.container}>
@@ -29,7 +29,8 @@ export default function UpdateUser({ addReview }){
         validationSchema={reviewSchema}
         onSubmit={(values, actions) => {
           actions.resetForm();
-          Update(values);
+          console.log(values);
+          Update(values,item.id);
         }}
       >
         {props => (

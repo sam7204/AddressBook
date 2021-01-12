@@ -5,9 +5,9 @@ export default  function  Home({ navigation }){
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch('https://127.0.0.1:5000/addressbook')
+    fetch('https://addressapi1.herokuapp.com/addressbook')
       .then((response) => response.json())
-      .then((json) => setData(json.movies))
+      .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, [])
@@ -26,7 +26,8 @@ export default  function  Home({ navigation }){
           style: "cancel"
         },
         { text: "Delete", onPress: () =>{
-          fetch(`http://127.0.0.1:5000/addressbook/${item.id}`,{ 
+          setLoading(true);
+          fetch(`https://addressapi1.herokuapp.com/addressbook/${item.id}`,{ 
             method: 'DELETE',
             headers: {
               Accept: 'application/json',
@@ -34,6 +35,10 @@ export default  function  Home({ navigation }){
             }
           }
           )
+          .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
         }}
       ],
       { cancelable: false }
@@ -49,7 +54,7 @@ export default  function  Home({ navigation }){
         data={data} 
         renderItem={({ item }) => ( 
             <TouchableOpacity style={Style.item} onPress={()=>navigation.navigate('ViewUser',item)} onLongPress={()=>Delete(item)}>
-          <Text>{item.title}</Text>
+          <Text>{item.fname} {item.lanme}</Text>
           </TouchableOpacity>
         )}
         />

@@ -5,7 +5,7 @@ export default function ViewUser({navigation, route}){
   const item =route.params;
   return(
 <View style={Style.container}>
-<Text style={Style.input}>{item.title}</Text>
+<Text style={Style.input}>{item.fname}</Text>
 <Text style={Style.input}>{item.lanme}</Text>
 <Text style={Style.input}>{item.email}</Text>
 <Text style={Style.input}>{item.Phnum}</Text>

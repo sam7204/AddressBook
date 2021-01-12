@@ -4,7 +4,7 @@ import {Style} from '../styles/Style';
 import { SearchBar } from 'react-native-elements';
 export default  function  Search({navigation}){
   const [isLoading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+  let [data, setData] = useState([]);
   const[text,setText]=useState();
   let arrayholder = data;
   function searchFilterFunction (text) { 
@@ -20,9 +20,9 @@ export default  function  Search({navigation}){
   };
   
   useEffect(() => {
-    fetch('https://127.0.0.1:5000/addressbook')
+    fetch('https://addressapi1.herokuapp.com/addressbook')
     .then((response) => response.json())
-    .then((json) => setData(json.movies),
+    .then((json) => setData(json),
     )
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
@@ -35,7 +35,7 @@ export default  function  Search({navigation}){
           autoCorrect={false}
           value={text}
           clearButtonMode="always"
-          onChangeText={text =>searchFilterFunction(text)}
+          onChangeText={(text) =>searchFilterFunction(text)}
            />
      {isLoading ? <ActivityIndicator/> : (
       <FlatList
@@ -44,7 +44,7 @@ export default  function  Search({navigation}){
     data={data}
     renderItem={({ item }) => ( 
         <TouchableOpacity style={Style.item} onPress={()=>navigation.navigate('ViewUser',item)}>
-      <Text>{item.title}</Text>
+      <Text>{item.fname}{item.lanme}</Text>
       </TouchableOpacity>
     )}
     />
